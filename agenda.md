@@ -15,18 +15,16 @@ This workshop is ideal for developers with some experience in Java or frontend d
 
 ## **Technology Stack:**
 Required:
-* Docker
-* Docker Compose
 * Git
+* Docker
+    * Docker Compose
+
 Languages:
 * Java 17 / Maven
     * Spring Boot 3.2
-* Node.js
-    * AngularJS 19
+* Node.js 20
+    * Angular 18
 * PostgreSQL 14
-Optional:
-* Kubernetes / KinD
-
 ---
 
 **Workshop Agenda:**
