@@ -1,6 +1,6 @@
-# Student Management System
+# Docker Workshop
 
-A CRUD web application that allows users to add, update, and delete "students" in a PostgreSQL database. Students have a name and belong to one of four houses: Gryffindor, Slytherin, Hufflepuff, or Ravenclaw.
+This workshop will guide you through the process of containerizing a CRUD web application that allows users to add, update, and delete "students" in a PostgreSQL database. Students have a name and belong to one of four houses: Gryffindor, Slytherin, Hufflepuff, or Ravenclaw.
 
 ## Tech Stack
 
@@ -21,7 +21,7 @@ A CRUD web application that allows users to add, update, and delete "students" i
 3. From the root directory, run:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 This will:
@@ -48,8 +48,10 @@ The backend is a Spring Boot application with Maven. To run it locally:
 
 ```bash
 cd backend-springboot
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
+
+*Note:* This project makes use of a PostgreSQL database. When running with `docker compose`, a local test database is spun up automatically for this purpose. If you wish to run the backend on its own, you will have to ensure a test database is running.
 
 ### Frontend Development
 
@@ -58,5 +60,9 @@ The frontend is an Angular application. To run it locally:
 ```bash
 cd frontend-angular
 npm install
-ng serve
+npm run-script ng serve
 ```
+
+You can then open your browser to http://localhost::4200 to access the application.
+
+*Note:* The above requires the local installation of `npm`.

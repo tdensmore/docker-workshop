@@ -14,12 +14,11 @@ By the end of the session, developers will walk away with a clear understanding 
 This workshop is ideal for developers with some experience in Java or frontend development who are looking to sharpen their DevOps and containerization skills.
 
 ## **Technology Stack:**
-Required:
+**Required**
 * Git
-* Docker
-    * Docker Compose
+* Docker Desktop
 
-Languages:
+**Languages**
 * Java 17 / Maven
     * Spring Boot 3.2
 * Node.js 20
