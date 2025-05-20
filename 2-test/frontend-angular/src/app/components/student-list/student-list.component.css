@@ -1,0 +1,9 @@
+/* Custom styles for student list component */
+.table {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  font-size: 0.9em;
+  padding: 0.5em 0.7em;
+}

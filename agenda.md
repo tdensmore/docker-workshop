@@ -1,4 +1,4 @@
-# HEB Workshop
+# Docker Workshop
 
 # **Build, Run, Deploy: a Full-Stack App with Spring Boot, AngularJS, and PostgreSQL**
 

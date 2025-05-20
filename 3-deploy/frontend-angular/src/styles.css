@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.house-badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* Custom house colors */
+.house-gryffindor {
+  background-color: #7F0909; /* Gryffindor red */
+  border: 2px solid #FFC500; /* Gryffindor gold */
+}
+
+.house-slytherin {
+  background-color: #0D6217; /* Slytherin green */
+  border: 2px solid #AAAAAA; /* Slytherin silver */
+}
+
+.house-hufflepuff {
+  background-color: #FFD800; /* Hufflepuff yellow */
+  color: #000000; /* Black text for better contrast */
+  border: 2px solid #000000; /* Hufflepuff black */
+}
+
+.house-ravenclaw {
+  background-color: #0E4C92; /* Ravenclaw blue */
+  border: 2px solid #CD7F32; /* Ravenclaw bronze */
+}
