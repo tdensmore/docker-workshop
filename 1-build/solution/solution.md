@@ -35,7 +35,7 @@ docker run -d --name frontend -p 8080:80 frontend:latest
 Now run postgresql in a container:
 
 ```bash
-docker run -d --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=postgres -p 5432:5432 postgres:17-alpine
+docker run -d --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=studentdb -p 5432:5432 postgres:17-alpine
 ```
 
 Test the application:

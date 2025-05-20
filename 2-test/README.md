@@ -12,7 +12,7 @@ Currently we have to run three separate containers manually (and set up a custom
 docker network create -d bridge my-network
 docker run -d --name backend -p 8082:8082 backend:latest --network my-network
 docker run -d --name frontend -p 8080:80 frontend:latest --network my-network
-docker run -d --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=postgres -p 5432:5432 postgres:17-alpine --network my-network
+docker run -d --name postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=studentdb -p 5432:5432 postgres:17-alpine --network my-network
 ```
 
 Although this is an improvement, it is not a very efficient way to consistently run the application. We need to find a better way to run the application in a repeatable way.
