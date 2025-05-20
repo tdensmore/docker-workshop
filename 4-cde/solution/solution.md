@@ -1,102 +1,79 @@
-# Solution: Deploy
+# Solution: CDE
 
-### Push images to a remote registry
+CDEs (Cloud Development Environments or Containerized Development Environments) are a way to programmatically describe a consistent development environment using containers. This allows you to provide the tools and SDKs needed to develop and test code using an IDE in a consistent way across different development environments. 
 
-By default, docker will push to Docker Hub. If you want to push to a different registry, you can tag the image with the registry name.
+## Development Containers
 
+The .devcontainer directory includes a Development Container configuration that allows you to work on both the Spring Boot backend and Angular frontend in a consistent, containerized environment.
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code
+
+## Getting Started
+
+1. Open VS Code
+2. Clone this repository
+3. Open the repository folder in VS Code
+4. When prompted, click "Reopen in Container" or press F1, type "Dev Containers: Reopen in Container"
+5. Wait for the container to build (this may take a few minutes the first time)
+
+## What's Included
+
+The development container includes:
+- Java 17 with Maven for Spring Boot 3.2 development
+- Node.js 20 with Angular CLI for Angular 19 development
+- PostgreSQL 14 database
+- Essential VS Code extensions for Java, Spring Boot, and Angular development
+
+## Working with the Services
+
+### Backend (Spring Boot)
+
+The Spring Boot application is accessible at http://localhost:9090
+
+To run the backend:
 ```bash
-docker tag myapp:latest myregistry.com/myapp:latest
-docker push myregistry.com/myapp:latest
+cd /workspace/backend-springboot
+mvn spring-boot:run
 ```
 
-You can then deploy the image to any environment that has access to the registry.
+### Frontend (Angular)
 
-### Start a local registry
+The Angular application is accessible at http://localhost:4300
 
-To spin up a local image registry for testing, use the `registry-compose.yml` file.
-
+To run the frontend with live reload:
 ```bash
-docker compose -f registry-compose.yml up -d
+cd /workspace/frontend-angular
+npm install
+ng serve --host 0.0.0.0
 ```
 
-This will start a local registry on your machine. You can then push your images to this registry and deploy them to other environments.
+### Database (PostgreSQL)
 
-### Push images to the local registry
+The PostgreSQL database is accessible at:
+- Host: postgres
+- Port: 5434
+- Database: studentdb
+- Username: postgres
+- Password: postgres
 
-First tag the image with the registry name, in this case `localhost:8090`.
+## Troubleshooting
 
-Example:
-```bash
-docker tag backend:latest localhost:8090/backend:v1
-docker tag frontend:latest localhost:8090/frontend:v1
-docker tag postgres:17-alpine localhost:8090/postgres:v1
-```
+If you encounter issues with the development container:
 
-Then push the images to the local registry.
+1. Ensure Docker Desktop is running
+2. Try rebuilding the container: F1 → "Dev Containers: Rebuild Container"
+3. Check the ports are not already in use on your host machine (9090, 4300, 5434)
 
-Example:
-```bash
-docker push localhost:8090/backend:v1
-docker push localhost:8090/frontend:v1
-docker push localhost:8090/postgres:v1
-```
+## Customizing the Dev Container
 
-NOTE: makes sure to remove the images from your local machine after pushing them to the registry.
+If you need to customize the development environment:
 
-Example:
-```bash
-docker rmi localhost:8090/backend:v1
-docker rmi localhost:8090/frontend:v1
-docker rmi localhost:8090/postgres:v1
-```
+1. Modify `.devcontainer/devcontainer.json` to add VS Code extensions or settings
+2. Modify `.devcontainer/Dockerfile` to install additional tools or dependencies
+3. Modify `.devcontainer/docker-compose.yml` to change service configurations
 
-### Update docker-compose.yml
-
-Copy the existing `docker-compose.yml` file and rename it to `new-docker-compose.yml`. Update the `new-docker-compose.yml` file to use the image from the registry by removing the `build` section and adding an `image` section.
-
-Example:
-
-```yaml
-services:
-  backend:
-    image: localhost:8090/backend:v1
-    container_name: backend
-    ports:
-      - "8080:8080"
-```
-
-Then test the new `docker-compose.yml` file that uses the pulled images by running:
-
-```bash
-docker compose -f new-docker-compose.yml up -d
-```
-
-### Deploying to a Kubernetes cluster
-
-You can use `compose-bridge convert` to convert your docker-compose.yml file to a Kubernetes deployment.
-
-```bash
-compose-bridge convert -f docker-compose.yml -o k8s-deployment
-```
-
-This will create a k8s-deployment.yaml file that you can use to deploy to a Kubernetes cluster.
-
-You can deploy to a Kubernetes cluster using the `kubectl` command. 
-
-```bash
-kubectl apply -k k8s-deployment/overlays/desktop
-kubectl get ns
-kubectl config set-context --current --namespace=docker-workshop
-kubectl get pods
-kubectl get svc
-kubectl get deploy
-kubectl port-forward svc/frontend-published 8080:80
-```
-
-### Debugging
-
-```bash
-kubectl get pods
-kubectl describe pod [podname]
-kubectl logs [podname] -p # the -p option will read the logs of the previous (crashed) instance
-```
+After making changes, rebuild the container by pressing F1 and selecting "Dev Containers: Rebuild Container"

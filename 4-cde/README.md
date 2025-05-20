@@ -2,44 +2,16 @@
 
 (open the `4-cde` directory in your IDE)
 
-You are a developer working on a Springboot application that allows users to add, update, and delete "students" in a PostgreSQL database. Students have a name and belong to one of four houses: Gryffindor, Slytherin, Hufflepuff, or Ravenclaw.
+You have successfully containerized the application and made it easy to setup and share. You have also made it easy to deploy to production, and tested it in a Kubernetes cluster.
 
 ## The Problem
 
-The application is currently running on your local machine but the are a few shortcomings:
-
-1. The application is hard to setup quickly (it requires specific versions of Java, Maven, Node and PostgreSQL)
-2. The application is hard to share easily (other developers need to install the same tools and versions)
-3. The application is hard to deploy to production (operations team needs detailed instructions to understand how to deploy the application)
+While containers make it very easy to run the application locally, most Developers will still need to install the tools and SDKs (Java, Maven, Node, PostgreSQL) to develop and test the code that will run in a container. 
 
 ## The Challenge
 
-Your task is to containerize the application and make it easy to setup and share.
+Create a way to provide a way to specifiy not only the application and its dependencies, but also the tools and SDKs needed to develop and test the code that will run in a container.
 
-### Steps
+## Hints
 
-To containerize the application, we need to create a `Dockerfile` for each application.
-
-A `Dockerfile` is a text document that describes how to build an image. More information can be found in the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
-
-To build an image from a `Dockerfile`, you use the `docker build` command.
-
-```bash
-docker build -t backend:latest ./backend-springboot
-```
-
-## Bonus Points
-
-1. Add `postgresql` as a docker container
-2. Ensure that secrets are not accidentally committed added to the container image
-3. Make sure the application adheres to best practices for containerization
-
-## Hint
-
-The command `docker init` can be used to create a `Dockerfile` automatically for some lanaguages, and provide a starting template Dockerfile for other languages.
-
-Usage:
-
-```bash
-docker init
-```
+Most IDEs inluding Visual Studio Code and IntelliJ IDEA have plugins that can be used to help with this challenge, and they all leverage containerization to provide a consistent development environment. 

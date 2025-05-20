@@ -73,6 +73,14 @@ docker compose -f new-docker-compose.yml up -d
 
 ### Deploying to a Kubernetes cluster
 
+#### Kubernetes Cluster
+
+You can use Kind (Kubernetes IN Docker) to run a local Kubernetes cluster. This comes with Docker Desktop. 
+
+KinD is a tool for running local Kubernetes clusters using Docker containers as nodes. It was developed by the Kubernetes team to make it easier to test and develop Kubernetes itself.
+
+#### Kubernetes Deployment
+
 You can use `compose-bridge convert` to convert your docker-compose.yml file to a Kubernetes deployment.
 
 ```bash
@@ -93,7 +101,7 @@ kubectl get deploy
 kubectl port-forward svc/frontend-published 8080:80
 ```
 
-### Debugging
+### Debugging Kubernetes applications
 
 ```bash
 kubectl get pods

@@ -36,6 +36,10 @@ Example:
 docker scout <image_name>
 ```
 
+NOTE: Docker Desktop has a built-in Scout integration to show the results of `docker scout` in the UI.
+
+Just click on and image in the UI and click `Start analysis`.
+
 ## EXTRA: Using environment variables
 
 You can use the `environment` keyword to store secrets from within the docker compose file itself, or you can use a .env file to store secrets on the host and reference them in the docker compose file.

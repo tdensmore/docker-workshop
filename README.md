@@ -14,25 +14,6 @@ This workshop will guide you through the process of containerizing a CRUD web ap
 
 - `backend-springboot/`: Java Spring Boot backend API
 - `frontend-angular/`: Angular frontend application
-- `docker-compose.yml`: Docker Compose configuration to run the entire stack
-
-## How to Run
-
-1. Make sure you have Docker and Docker Compose installed on your system.
-2. Clone this repository.
-3. From the root directory, run:
-
-```bash
-docker compose up
-```
-
-This will:
-- Start a PostgreSQL database
-- Build and start the Spring Boot backend
-- Build and start the Angular frontend
-- Connect all services together
-
-4. Access the application at: http://localhost
 
 ## API Endpoints
 
