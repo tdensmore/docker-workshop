@@ -6,7 +6,7 @@ This workshop will guide you through the process of containerizing a CRUD web ap
 
 ## Requirements
 
-The onlyu requirements to complete this workshop are:
+The only requirements to complete this workshop are:
 
 - Git
 - Docker Desktop (includes Docker, Docker Compose)
