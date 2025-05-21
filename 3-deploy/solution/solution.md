@@ -62,7 +62,7 @@ services:
     image: localhost:8090/backend:v1
     container_name: backend
     ports:
-      - "8080:8080"
+      - "9090:9092"
 ```
 
 Then test the new `docker-compose.yml` file that uses the pulled images by running:
@@ -98,7 +98,7 @@ kubectl config set-context --current --namespace=docker-workshop
 kubectl get pods
 kubectl get svc
 kubectl get deploy
-kubectl port-forward svc/frontend-published 8080:80
+kubectl port-forward svc/frontend-published 8080:8082
 ```
 
 ### Debugging Kubernetes applications

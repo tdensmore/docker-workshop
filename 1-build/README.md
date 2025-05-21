@@ -4,9 +4,16 @@
 
 You are a developer working on a Springboot application that allows users to add, update, and delete "students" in a PostgreSQL database. Students have a name and belong to one of four houses: Gryffindor, Slytherin, Hufflepuff, or Ravenclaw.
 
+## Project Structure
+
+The project is split into two parts:
+
+- `backend-springboot/`: Java Spring Boot backend API
+- `frontend-angular/`: Angular frontend application
+
 ## The Problem
 
-The application is currently running on your local machine but the are a few shortcomings:
+The application repository currently contains the complete source code to run the application on your local machine but the are a few shortcomings:
 
 1. The application is hard to setup quickly (it requires specific versions of Java, Maven, Node and PostgreSQL)
 2. The application is hard to share easily (other developers need to install the same tools and versions)

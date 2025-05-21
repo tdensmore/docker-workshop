@@ -1,3 +1,5 @@
+**/k8s-deployment/
+
 # Java / Spring Boot ignores
 HELP.md
 target/
