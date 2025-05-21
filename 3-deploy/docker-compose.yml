@@ -43,9 +43,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+    volumes:
+      - student-data-postgres:/var/lib/postgresql/data
 
 volumes:
-  postgres-data:
+  student-data-postgres:
 
 networks:
   # Network for frontend to connect to backend
