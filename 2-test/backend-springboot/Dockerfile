@@ -8,5 +8,11 @@ RUN mvn package -DskipTests
 FROM amazoncorretto:17-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 9090
+
+# Set default environment variables for database connection
+ENV POSTGRES_DB=studentdb \
+    POSTGRES_USER=postgres \
+    POSTGRES_PASSWORD=postgres
+
+EXPOSE 9092
 ENTRYPOINT ["java", "-jar", "app.jar"]
