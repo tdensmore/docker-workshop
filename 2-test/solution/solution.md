@@ -18,6 +18,8 @@ The command to stop the compose file is:
 docker compose down
 ```
 
+
+
 ## EXTRA: Examine the final image size and address any security issues
 
 You can use the `docker image history` command to examine the image size.
@@ -42,7 +44,7 @@ Just click on and image in the UI and click `Start analysis`.
 
 ## EXTRA: Using environment variables
 
-You can use the `environment` keyword to store secrets from within the docker compose file itself, or you can use a .env file to store secrets on the host and reference them in the docker compose file.
+You can use the `environment` keyword to pass variables to the docker compose file itself, or you can use a .env file to store variables on the host and reference them in the docker compose file.
 
 Example (using environment): 
 
@@ -52,9 +54,9 @@ services:
     image: nginx:1.25.5
     container_name: nginx
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
 ```
 
 Example (using .env): 
@@ -62,10 +64,70 @@ Example (using .env):
 ```yaml
 services:
   webapp:
-    env_file: "webapp.env"
+    env_file: "postgres.env"
 ```
 
-## EXTRA: Using different databases
+where `postgres.env` is a file in the same directory as the docker compose file with the following content:
+
+```text
+POSTGRES_PASSWORD="postgres"
+POSTGRES_USER="postgres"
+POSTGRES_DB="studentdb"
+```
+
+## EXTRA: Database persistence
+
+You can use the `volumes` keyword to persist data in a docker compose file.
+
+Example: 
+
+```yaml
+services:
+  webapp:
+    image: nginx:1.25.5
+    container_name: nginx
+    volumes:
+      - ./data:/data
+```
+
+where `data` is a directory in the same directory as the docker compose file.
+
+A named volume is a volume that is created and managed by docker.
+
+Example: 
+
+```yaml
+volumes:
+  student-data-postgres:
+```
+and can be mounted by the postgres service using the `volumes` keyword.
+
+Example: 
+
+```yaml
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres
+    volumes:
+      - student-data-postgres:/var/lib/postgresql/data
+```
+
+and will not be visible in the local file system. Use `docker volume ls` to list created volumes.
+
+### Merge
+
+You can use the `merge` keyword to merge values in a docker compose file.
+
+`merge`documentation: 
+  webapp:
+    image: nginx:1.25.5
+    container_name: nginx
+    volumes:
+      - student-data-postgres:/data
+```
+
+and will not be visible in the local file system. Use `docker volume ls` to list created volumes.
 
 ### Merge
 
