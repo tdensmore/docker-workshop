@@ -1,5 +1,15 @@
 services:
 
+  frontend:
+    build: ./frontend-angular
+    image: frontend:latest
+    container_name: frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:8082"
+    networks:
+      - frontend_network
   backend:
     build: ./backend-springboot
     image: backend:latest
@@ -12,26 +22,22 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     ports:
-      - "9090:9090"
-
-  frontend:
-    build: ./frontend-angular
-    image: frontend:latest
-    container_name: frontend
-    depends_on:
-      - backend
-    ports:
-      - "8080:80"
+      - "9090:9092"
+    networks:
+      - frontend_network
+      - backend_network
 
   postgres:
     image: postgres:17-alpine
     container_name: postgres
     environment:
-      POSTGRES_DB: studentdb
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
+    networks:
+      - backend_network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -40,3 +46,11 @@ services:
 
 volumes:
   postgres-data:
+
+networks:
+  # Network for frontend to connect to backend
+  frontend_network:
+    driver: bridge
+  # Network for backend to connect to database
+  backend_network:
+    driver: bridge
